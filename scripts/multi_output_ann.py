@@ -124,7 +124,8 @@ def get_model(n_inputs, n_outputs):
     model.compile(loss='mae', optimizer='adam')
     return model
 
-# evaluate a model using repeated k-fold cross-validation
+# Evaluation is taken from 
+# https://machinelearningmastery.com/deep-learning-models-for-multi-output-regression/
 def evaluate_model(X, y):
 	results = list()
 	n_inputs, n_outputs = X.shape[1], y.shape[1]
@@ -257,6 +258,8 @@ def parse_args():
     return parser.parse_args()
 
 # load dataset
+# The following workflow is taken from https://machinelearningmastery.com/deep-learning-models-for-multi-output-regression/
+# and adapted according to our requirements.
 x_train, y_train, x_test, y_test = get_dataset()
 # evaluate model
 results = evaluate_model(x_train, y_train)
